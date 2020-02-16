@@ -23,11 +23,12 @@ public class Window extends JFrame {
         Draw(g, alpha);
         var timer = new Timer(500, new ActionListener(){      // Timer 4 seconds
             public void actionPerformed(ActionEvent e) {
-                repaint();
                 alpha += Math.PI/60;
                 if(alpha > 2*Math.PI){
                     alpha = 0;
+
                 }
+                repaint();
             }
         });
         timer.start();
@@ -39,7 +40,7 @@ public class Window extends JFrame {
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.red);
         tetrahedron.getMatrix();
-        tetrahedron.rotateByY(alpha);
+        tetrahedron.rotateByZ(alpha);
         tetrahedron.shift(100, 100, 100);
         var points = tetrahedron.toPointsArray(0.6, Math.PI/4);
 
