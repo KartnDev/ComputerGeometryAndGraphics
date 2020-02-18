@@ -7,13 +7,6 @@ import java.awt.geom.Point2D;
 
 public class Tetrahedron extends BasePlatonicSolid implements I3D{
 
-    private double matrix[][];
-
-    private int centerPlateX; // central point of base(footage) tetrahedron
-    private int centerPlateY;
-    private int centerPlateZ;
-    private int imaginaryRadius;
-
     public Tetrahedron(int centerPlateOfX, int centerPlateOfY, int centerPlateOfZ, int imaginaryRadius){
         super(centerPlateOfX, centerPlateOfY, centerPlateOfZ, imaginaryRadius);
         matrix = new double[4][3];
@@ -31,18 +24,22 @@ public class Tetrahedron extends BasePlatonicSolid implements I3D{
 
         matrix[3][0] = centerPlateX;
         matrix[3][1] = centerPlateY;
-        matrix[3][2] = centerPlateOfZ +
-                Math.sqrt(12 * imaginaryRadius*imaginaryRadius
-                        - centerPlateOfX*centerPlateOfX
-                        - centerPlateOfY*centerPlateOfY);
+        matrix[3][2] = centerPlateOfZ +  imaginaryRadius;
     }
 
     @Override
     public void drawSolid(Graphics g, double coef, double alpha) {
-        var polygon = this.toPolygon(0.6, Math.PI/4);
+        var polygon = this.toPolygon(coef, alpha);
 
         var xPoints = polygon.xpoints;
         var yPoints = polygon.ypoints;
+
+        for (int i = 0; i < 2; i++) {
+            g.drawLine(xPoints[i], yPoints[i],  xPoints[i+1], yPoints[i+1]);
+            g.drawLine(xPoints[i], yPoints[i],  xPoints[3], yPoints[3]);
+        }
+        g.drawLine(xPoints[0], yPoints[0],  xPoints[2], yPoints[2]);
+        g.drawLine(xPoints[2], yPoints[2],  xPoints[3], yPoints[3]);
     }
 
     @Override

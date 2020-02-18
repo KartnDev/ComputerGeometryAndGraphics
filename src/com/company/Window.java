@@ -24,7 +24,7 @@ public class Window extends JFrame {
             Draw(g, alpha);
             alpha += Math.PI / 60;
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -32,12 +32,12 @@ public class Window extends JFrame {
     }
 
     public void Draw(Graphics g, double alpha){
-        BasePlatonicSolid solid = new Gexahedron(0, 0, 0,100);
+        BasePlatonicSolid solid = new Tetrahedron(0, 0, 0,100);
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.red);
-        solid.rotateByZ(alpha);
+        //solid.rotateByZ(alpha);
         solid.rotateByX(alpha);
-        solid.rotateByY(alpha);
+        //solid.rotateByY(alpha);
         solid.shift(230, 230, 100);
         solid.drawSolid(g, 0.6, Math.PI/4);
     }
