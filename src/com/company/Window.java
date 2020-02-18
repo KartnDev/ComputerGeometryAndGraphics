@@ -20,36 +20,31 @@ public class Window extends JFrame {
     }
 
     public void paint(Graphics g){
-        Draw(g, alpha);
-        var timer = new Timer(500, new ActionListener(){      // Timer 4 seconds
-            public void actionPerformed(ActionEvent e) {
-                alpha += Math.PI/60;
-                if(alpha > 2*Math.PI){
-                    alpha = 0;
-
-                }
-                repaint();
+        while (true) {
+            Draw(g, alpha);
+            alpha += Math.PI / 60;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
-        timer.start();
-
+        }
     }
 
     public void Draw(Graphics g, double alpha){
-        Tetrahedron tetrahedron = new Tetrahedron(0, 0, 0,100);
+        BasePlatonicSolid solid = new Gexahedron(0, 0, 0,100);
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.red);
-        tetrahedron.getMatrix();
-        tetrahedron.rotateByZ(alpha);
-        tetrahedron.shift(100, 100, 100);
-        var points = tetrahedron.toPointsArray(0.6, Math.PI/4);
+        solid.rotateByZ(alpha);
+        solid.shift(100, 100, 100);
+        var points = solid.toPointsArray(0.6, Math.PI/4);
 
-        for (int i = 0; i < points.length -2; i++) {
+        for (int i = 0; i < 4; i++) {
             g.drawLine(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
-            g.drawLine(points[i].x, points[i].y, points[3].x, points[3].y);
+            g.drawLine(points[i].x, points[i].y, points[i+4].x, points[i+4].y);
+            g.drawLine(points[i+4].x, points[i+4].y, points[i+5].x, points[i+5].y);
         }
-        g.drawLine(points[0].x, points[0].y, points[2].x, points[2].y);
-        g.drawLine(points[2].x, points[2].y, points[3].x, points[3].y);
+
 
     }
 
