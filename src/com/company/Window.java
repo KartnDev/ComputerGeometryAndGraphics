@@ -36,16 +36,10 @@ public class Window extends JFrame {
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.red);
         solid.rotateByZ(alpha);
-        solid.shift(100, 100, 100);
-        var points = solid.toPointsArray(0.6, Math.PI/4);
-
-        for (int i = 0; i < 4; i++) {
-            g.drawLine(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
-            g.drawLine(points[i].x, points[i].y, points[i+4].x, points[i+4].y);
-            g.drawLine(points[i+4].x, points[i+4].y, points[i+5].x, points[i+5].y);
-        }
-
-
+        solid.rotateByX(alpha);
+        solid.rotateByY(alpha);
+        solid.shift(230, 230, 100);
+        solid.drawSolid(g, 0.6, Math.PI/4);
     }
 
 

@@ -36,4 +36,22 @@ public class Tetrahedron extends BasePlatonicSolid implements I3D{
                         - centerPlateOfX*centerPlateOfX
                         - centerPlateOfY*centerPlateOfY);
     }
+
+    @Override
+    public void drawSolid(Graphics g, double coef, double alpha) {
+        var polygon = this.toPolygon(0.6, Math.PI/4);
+
+        var xPoints = polygon.xpoints;
+        var yPoints = polygon.ypoints;
+    }
+
+    @Override
+    public void scew(double scale) {
+
+    }
+
+    @Override
+    public void scale(double scaleX, double scaleY, double scaleZ) {
+
+    }
 }

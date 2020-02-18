@@ -10,10 +10,8 @@ public abstract class BasePlatonicSolid implements I3D{
     protected int centerPlateX; // central point of base(footage) tetrahedron
     protected int centerPlateY;
     protected int centerPlateZ;
+
     protected int imaginaryRadius;
-
-
-
 
     public BasePlatonicSolid(int centerPlateOfX, int centerPlateOfY, int centerPlateOfZ, int imaginaryRadius) {
         this.centerPlateX = centerPlateOfX;
